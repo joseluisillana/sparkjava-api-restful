@@ -1,0 +1,29 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>M.I.K.E - Ingestion API with Spark Java</display-name>
+
+
+
+  <!--
+  <filter>
+      <filter-name>SparkFilter</filter-name>
+      <filter-class>spark.servlet.SparkFilter</filter-class>
+      <init-param>
+          <param-name>ApplicationSparkJava</param-name>
+          <param-value>com.bbva.ApplicationSparkJava</param-value>
+      </init-param>
+  </filter>
+
+  <filter-mapping>
+      <filter-name>SparkFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>
