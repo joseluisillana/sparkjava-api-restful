@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Plan de Pruebas" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Grupo de Hilos" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador Bucle" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">500</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <longProp name="ThreadGroup.start_time">1448977307000</longProp>
+        <longProp name="ThreadGroup.end_time">1448977307000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="PARAMETER_API_HOST_MIKE" elementType="Argument">
+              <stringProp name="Argument.name">PARAMETER_API_HOST_MIKE</stringProp>
+              <stringProp name="Argument.value">localhost</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="PARAMETER_KAFKA_TOPIC" elementType="Argument">
+              <stringProp name="Argument.name">PARAMETER_KAFKA_TOPIC</stringProp>
+              <stringProp name="Argument.value">testJMeter</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="PARAMETER_KAFKA_KEY" elementType="Argument">
+              <stringProp name="Argument.name">PARAMETER_KAFKA_KEY</stringProp>
+              <stringProp name="Argument.value">0</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="PARAMETER_KAFKA_MESSAGE" elementType="Argument">
+              <stringProp name="Argument.name">PARAMETER_KAFKA_MESSAGE</stringProp>
+              <stringProp name="Argument.value">{&quot;aap&quot;:&quot;00000001&quot;,&quot;type&quot;:&quot;qmot-score-service&quot;,&quot;@version&quot;:&quot;1&quot;,&quot;ext&quot;:{&quot;tx&quot;:[{&quot;txd&quot;:21,&quot;txt0&quot;:1447845794624,&quot;txn&quot;:&quot;KYFET009&quot;}]},&quot;c&quot;:&quot;04&quot;,&quot;d&quot;:42,&quot;ua&quot;:&quot;enax&quot;,&quot;m&quot;:&quot;07&quot;,&quot;s&quot;:&quot;SMC201400459&quot;,&quot;es&quot;:&quot;services&quot;,&quot;p&quot;:&quot;0019&quot;,&quot;te&quot;:&quot;Qsrv1&quot;,&quot;r&quot;:&quot;OK&quot;,&quot;@timestamp&quot;:&quot;2015-11-18T11:23:14.655Z&quot;,&quot;v&quot;:1,&quot;ts&quot;:&quot;1447845794609&quot;}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="PARAMETER_REQUEST_PATH" elementType="Argument">
+              <stringProp name="Argument.name">PARAMETER_REQUEST_PATH</stringProp>
+              <stringProp name="Argument.value">sendTestData</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="PARAMETER_API_PORT_MIKE" elementType="Argument">
+              <stringProp name="Argument.name">PARAMETER_API_PORT_MIKE</stringProp>
+              <stringProp name="Argument.value">4567</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Petición HTTP al API" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;aap&quot;:&quot;00000001&quot;,&quot;type&quot;:&quot;qmot-score-service&quot;,&quot;@version&quot;:&quot;1&quot;,&quot;ext&quot;:{&quot;tx&quot;:[{&quot;txd&quot;:21,&quot;txt0&quot;:1447845794624,&quot;txn&quot;:&quot;KYFET009&quot;}]},&quot;c&quot;:&quot;04&quot;,&quot;d&quot;:42,&quot;ua&quot;:&quot;enax&quot;,&quot;m&quot;:&quot;07&quot;,&quot;s&quot;:&quot;SMC201400459&quot;,&quot;es&quot;:&quot;services&quot;,&quot;p&quot;:&quot;0019&quot;,&quot;te&quot;:&quot;Qsrv1&quot;,&quot;r&quot;:&quot;OK&quot;,&quot;@timestamp&quot;:&quot;2015-11-18T11:23:14.655Z&quot;,&quot;v&quot;:1,&quot;ts&quot;:&quot;1447845794609&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${PARAMETER_API_HOST_MIKE}</stringProp>
+          <stringProp name="HTTPSampler.port">${PARAMETER_API_PORT_MIKE}</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/sendTestData/testJLJmeter</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Ver Árbol de Resultados" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename">/home/mikelsanvicente/results.txt</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Gráfico de Resultados" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
