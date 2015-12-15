@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Plan de Pruebas" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Grupo de Hilos" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador Bucle" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">3</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1448263660000</longProp>
+        <longProp name="ThreadGroup.end_time">1448263660000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="PARAMETER_KAFKA_BROKERS" elementType="Argument">
+              <stringProp name="Argument.name">PARAMETER_KAFKA_BROKERS</stringProp>
+              <stringProp name="Argument.value">127.0.0.1:9092</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="PARAMETER_KAFKA_TOPIC" elementType="Argument">
+              <stringProp name="Argument.name">PARAMETER_KAFKA_TOPIC</stringProp>
+              <stringProp name="Argument.value">kafkatopic2</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="PARAMETER_KAFKA_KEY" elementType="Argument">
+              <stringProp name="Argument.name">PARAMETER_KAFKA_KEY</stringProp>
+              <stringProp name="Argument.value">0</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="PARAMETER_KAFKA_MESSAGE" elementType="Argument">
+              <stringProp name="Argument.name">PARAMETER_KAFKA_MESSAGE</stringProp>
+              <stringProp name="Argument.value">[${__time(EEE MMM d HH:mm:ss SSSS)}] ${__Random(1,50,aleatorio)} QUE TAL ESTAS</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Petición Java" enabled="true">
+          <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="kafka_brokers" elementType="Argument">
+                <stringProp name="Argument.name">kafka_brokers</stringProp>
+                <stringProp name="Argument.value">${PARAMETER_KAFKA_BROKERS}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="kafka_topic" elementType="Argument">
+                <stringProp name="Argument.name">kafka_topic</stringProp>
+                <stringProp name="Argument.value">${PARAMETER_KAFKA_TOPIC}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="kafka_key" elementType="Argument">
+                <stringProp name="Argument.name">kafka_key</stringProp>
+                <stringProp name="Argument.value">${PARAMETER_KAFKA_KEY}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="kafka_message" elementType="Argument">
+                <stringProp name="Argument.name">kafka_message</stringProp>
+                <stringProp name="Argument.value">[${__time(EEE MMM d HH:mm:ss SSSS)}] [${randomOption}] [client 10.0.${__Random(1,255)}.${__Random(1,255)}] ${text}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="kafka_message_serializer" elementType="Argument">
+                <stringProp name="Argument.name">kafka_message_serializer</stringProp>
+                <stringProp name="Argument.value">kafka.serializer.DefaultEncoder</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="kafka_key_serializer" elementType="Argument">
+                <stringProp name="Argument.name">kafka_key_serializer</stringProp>
+                <stringProp name="Argument.value">kafka.serializer.NullEncoder</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="classname">co.signal.kafkameter.KafkaProducerSampler</stringProp>
+        </JavaSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Ver Árbol de Resultados" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ErrorLevel" enabled="true">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script">  String[] query = new String[]{&quot;error&quot;, &quot;Info&quot;, &quot;warning&quot;};
+    Random random = new Random();
+    int i = random.nextInt(query.length);
+    vars.put(&quot;randomOption&quot;,query[i]);</stringProp>
+        </BeanShellPreProcessor>
+        <hashTree/>
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="text" enabled="true">
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="script">String[] query = new String[]{&quot;client denied by server configuration: /export/home/live/ap/htdocs/test&quot;, &quot;general information of system&quot;};
+    Random random = new Random();
+    int i = random.nextInt(query.length);
+    vars.put(&quot;text&quot;,query[i]);</stringProp>
+        </BeanShellPreProcessor>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

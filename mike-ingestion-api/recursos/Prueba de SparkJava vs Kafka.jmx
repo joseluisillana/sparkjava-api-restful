@@ -15,10 +15,10 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador Bucle" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">500</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
+        <stringProp name="ThreadGroup.num_threads">5</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1448977307000</longProp>
         <longProp name="ThreadGroup.end_time">1448977307000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
@@ -61,7 +61,37 @@
           </collectionProp>
         </Arguments>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Petición HTTP al API" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Petición HTTP al API con parametros" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;aap&quot;:&quot;${__Random(1,90)}${__Random(1,255)}${__Random(1,255)}&quot;,&quot;type&quot;:&quot;qmot-score-service${__Random(1,90)}&quot;,&quot;@version&quot;:&quot;${__Random(1,5)}&quot;,&quot;ext&quot;:{&quot;tx&quot;:[{&quot;txd&quot;:${__Random(1,30)},&quot;txt0&quot;:144${__Random(1,90)}${__Random(1,255)}${__Random(1,255)},&quot;txn&quot;:&quot;KYFET0${__Random(1,99)}&quot;}]},&quot;c&quot;:&quot;${__Random(1,5)}&quot;,&quot;d&quot;:${__Random(1,50)},&quot;ua&quot;:&quot;enax&quot;,&quot;m&quot;:&quot;${__Random(1,10)}&quot;,&quot;s&quot;:&quot;SMC201400459&quot;,&quot;es&quot;:&quot;services&quot;,&quot;p&quot;:&quot;${__Random(1,1000)}&quot;,&quot;te&quot;:&quot;Qsrv1&quot;,&quot;r&quot;:&quot;OK&quot;,&quot;@timestamp&quot;:&quot;2015-11-18T11:23:14.655Z&quot;,&quot;v&quot;:1,&quot;ts&quot;:&quot;1447845794609&quot;}&#xd;
+&#xd;
+&#xd;
+</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">4567</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/sendTestData/testing2</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Petición HTTP al API" enabled="false">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -118,7 +148,7 @@
               <threadCounts>true</threadCounts>
             </value>
           </objProp>
-          <stringProp name="filename">/home/mikelsanvicente/results.txt</stringProp>
+          <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Gráfico de Resultados" enabled="true">
@@ -153,6 +183,26 @@
           </objProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
+        <hashTree/>
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="text" enabled="true">
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="script">String[] query = new String[]{&quot;client denied by server configuration: /export/home/live/ap/htdocs/test&quot;, &quot;general information of system&quot;};
+    Random random = new Random();
+    int i = random.nextInt(query.length);
+    vars.put(&quot;text&quot;,query[i]);</stringProp>
+        </BeanShellPreProcessor>
+        <hashTree/>
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="ErrorLevel" enabled="true">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script">  String[] query = new String[]{&quot;error&quot;, &quot;Info&quot;, &quot;warning&quot;};
+    Random random = new Random();
+    int i = random.nextInt(query.length);
+    vars.put(&quot;randomOption&quot;,query[i]);</stringProp>
+        </BeanShellPreProcessor>
         <hashTree/>
       </hashTree>
     </hashTree>
